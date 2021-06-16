@@ -1,0 +1,841 @@
+@import variables
+    
+$base-font-size: 16
+
+@function strip-unit($number)
+    @if type-of($number) == 'number' and not unitless($number) 
+        @return $number / ($number * 0 + 1)
+    @return $number
+
+
+@function to-rem($size, $base: $base-font-size)
+    $pxUnitless: strip-unit($size)
+    @return #{$pxUnitless / $base}rem
+
+@mixin breakpoint($point)
+    @if $point == phone
+        @media (max-width: 375px)
+            @content
+  
+
+body
+    margin: 0
+
+header
+    background: linear-gradient(-90deg, rgba(250, 178, 152, 0.48) 0%, #F4DED6 24.3%, #F8EAE5 86.67%, rgba(255, 255, 255, 0) 100%)
+    mix-blend-mode: multiply
+    padding: to-rem(38) 0 0 0
+    +breakpoint($point: phone)
+        padding: 0
+
+.container
+    font-family: 'Poppins', sans-serif
+    width: to-rem(1440)
+    margin: 0 auto
+    +breakpoint($point: phone)
+        width: to-rem(375)
+
+.wrapper
+    display: flex
+    justify-content: space-between
+    width: to-rem(1320)
+    margin: 0 auto
+    +breakpoint($point: phone)
+        width: to-rem(850)
+
+.header
+    display: flex
+    justify-content: space-between
+    width: to-rem(1320)
+    margin: 0 auto
+    +breakpoint($point: phone)
+        display: none
+
+.free__shipping
+    color: #ffffff
+    font-size: 0.75em
+    font-weight: 300
+    text-align: center
+    +breakpoint($point: phone)
+        font-size: 0.625em
+        margin: 0
+
+.header
+    &__above
+        background-color: #000000
+        padding: to-rem(10)
+    &__nav
+        width: 50%
+    &__menu
+        display: flex
+        justify-content: space-between
+        width: 100%
+        list-style-type: none
+        margin: 0
+        &--item
+            color: #000000
+            text-decoration: none
+            text-transform: capitalize
+            padding: to-rem(8) to-rem(5)
+            transition: 0.2s
+            &:hover
+                color: $brown
+                border-bottom: 1px solid $brown
+
+.header
+    &__phone
+        box-sizing: border-box
+        display: none
+        justify-content: space-between
+        align-items: center
+        width: to-rem(375)
+        padding: to-rem(10) to-rem(20)
+        margin: 0 auto
+        +breakpoint($point: phone)
+            display: flex
+    &__menu
+        +breakpoint($point: phone)
+            padding: 0
+    &__nav
+        +breakpoint($point: phone)
+            width: 15%
+            display: flex
+            justify-content: space-between
+
+
+.shopping__bag
+    position: relative
+    &::after
+        content: "3"
+        display: flex
+        align-items: center
+        justify-content: center
+        color: #ffffff
+        font-weight: 400
+        font-size: 0.625em
+        width: to-rem(14) 
+        height: to-rem(14)
+        border-radius: 50%
+        background-color: #000000
+        position: absolute
+        top: to-rem(-5)
+        left: to-rem(9)
+
+.title
+    &__block
+        display: flex
+        +breakpoint(phone)
+            flex-direction: column
+            align-items: center
+            background-image: url(../images/phone__title.png)
+            background-size: 110%
+            background-position-x: to-rem(-39)
+            position: relative
+            margin-bottom: to-rem(100)
+            &::after
+                content: ""
+                width: 100%
+                height: 100vh
+                position: absolute
+                background: linear-gradient(2.76deg, #FDFAF8 11.68%, rgba(255, 255, 255, 0) 80.51%)
+        &--img
+            +breakpoint(phone)
+                display: none
+    &__text
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 35%
+        text-align: center
+        margin-top: to-rem(190)
+        +breakpoint(phone)
+            width: 95%
+            margin-top: to-rem(300)
+            z-index: 1
+
+.heading
+    font-size: 2.1875em
+    font-weight: 300
+    margin: 0
+    +breakpoint(phone)
+        font-size: 1.75em
+    &__sub
+        font-size: 1.25em
+        font-weight: 400
+        width: 80%
+        +breakpoint(phone)
+            font-size: 1em
+        
+.btn__shop
+    cursor: pointer
+    display: block
+    box-sizing: border-box
+    color: #ffffff
+    font-family: 'Poppins', sans-serif
+    font-size: 1em
+    text-align: center
+    text-decoration: none
+    width: to-rem(316)
+    background-color: #000000
+    border: none
+    padding: to-rem(23) to-rem(10)
+    margin-top: to-rem(15)
+    +breakpoint(phone)
+        font-size: 0.875em
+        width: 95%
+        padding: to-rem(16) to-rem(10)
+
+.routine
+    background-color: #000000
+    padding: to-rem(130) to-rem(170)
+    +breakpoint(phone)
+        display: flex
+        flex-direction: row-reverse
+        padding: to-rem(405) to-rem(20) to-rem(62) to-rem(20)
+    &__img
+        position: relative
+        img
+            position: absolute
+            top: to-rem(-400)
+            left: to-rem(550)
+            +breakpoint(phone)
+                width: to-rem(335)
+                top: to-rem(-460)
+                left: 0
+    &__title
+        width: 40%
+        +breakpoint(phone)
+            width: 100%
+        svg
+            width: to-rem(264)
+            height: to-rem(27)
+            display: block
+            margin: 0 auto
+            +breakpoint(phone)
+                width: to-rem(162)
+                height: to-rem(16)
+        &--text
+            color: #ffffff
+            font-size: 1.375em
+            font-weight: 300
+            text-align: center
+            +breakpoint(phone)
+                font-size: 1em
+            
+.product
+    display: flex
+    justify-content: center
+    +breakpoint(phone)
+        align-items: center
+        flex-direction: column-reverse
+    &__block--img
+        position: relative
+        +breakpoint(phone)
+            display: flex
+            justify-content: center
+            align-items: center
+    &__img
+        position: absolute
+        top: to-rem(50)
+        right: to-rem(130)
+        +breakpoint(phone)
+            width: to-rem(335)
+            top: to-rem(5)
+            right: to-rem(60)
+    &__block--title
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 30%
+        margin-top: to-rem(206)
+        +breakpoint(phone)
+            width: 90%
+            margin-top: to-rem(83)
+    &__heading
+        font-size: 2.5em
+        font-weight: 200
+        text-align: center
+        margin-top: 0
+        +breakpoint(phone)
+            font-size: 1.875em
+    &__description
+        font-size: 1.125em
+        font-weight: 300
+        text-align: center
+
+#bio
+    +breakpoint(phone)
+        display: none
+
+#bio-s
+    display: none
+    +breakpoint(phone)
+        display: block
+
+
+.reviews
+    display: flex
+    align-items: center
+    &__text
+        font-size: 1.125em
+        font-weight: 300
+        margin: 0 to-rem(10) to-rem(5) 0
+    &__stars
+        span
+            display: inline-block
+            width: to-rem(17)
+            height: to-rem(16)
+            background-size: to-rem(17)
+            margin-right: to-rem(5)
+            @for $i from 1 through 5
+                @if $i == 5
+                    &:nth-child(#{$i})
+                        background-image: url(../images/star-lgh.png)    
+                @else 
+                    &:nth-child(#{$i})
+                        background-image: url(../images/star.png)
+                        
+.price
+    margin-bottom: to-rem(15)
+    &__actual
+        font-size: 1.875em
+        font-weight: 200
+        margin-left: to-rem(15)
+    &__strike
+        color: #aaaaaa
+        font-size: 1.25em
+        font-weight: 200
+        position: relative
+        &::after
+            content: ' '
+            width: to-rem(90)
+            height: to-rem(1)
+            background-color: #000000
+            position: absolute
+            top: to-rem(15)
+            left: to-rem(-15)
+            
+.features
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    height: to-rem(740)
+    background-image: url(../images/AK8I5384-edit2.png)
+    +breakpoint(phone)
+        flex-direction: column
+        justify-content: space-between
+        height: auto
+        background-image: none
+        position: relative
+        &::after
+            content: ''
+            width: 100%
+            height: 100vh
+            position: absolute
+            background: linear-gradient(170.22deg, #FEF6F3 14.37%, rgba(254, 246, 243, 0) 104.42%)
+    &__img
+        display: none
+        +breakpoint(phone)
+            display: block
+            width: 100%
+    &__text
+        color: #ffffff
+        font-size: 3.75em
+        font-weight: 200
+        line-height: to-rem(72)
+        margin-left: to-rem(80)
+        +breakpoint(phone)
+            color: #000000
+            font-size: 2.5em
+            text-align: center
+            line-height: to-rem(48)
+            margin-left: 0
+            z-index: 1
+        
+.using
+    background-color: rgba(254, 246, 243, 1)
+    padding: to-rem(130) to-rem(160)
+    +breakpoint(phone)
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: to-rem(57) 0
+    .product__heading
+        position: relative
+        &::before
+            content: ''
+            width: to-rem(822)
+            height: to-rem(312)
+            background-image: url(../images/how-to-use.png)
+            position: absolute
+            top: to-rem(-170)
+            left: to-rem(130)
+            +breakpoint(phone)
+                width: to-rem(525)
+                height: to-rem(200)
+                background-image: url(../images/how-to-use-s.png)
+                position: absolute
+                top: to-rem(-75)
+                left: 0
+
+
+.using__steps
+    display: flex
+    justify-content: space-between
+    +breakpoint(phone)
+        display: flex
+        flex-direction: column
+        align-items: center
+
+.step
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: to-rem(30)
+    &__img
+        display: flex
+        align-items: center
+        justify-content: center
+        width: to-rem(124)
+        height: to-rem(124)
+        background-color: #ffffff
+        border: 1px solid rgba(138, 81, 55, 1)
+        border-radius: 50%
+        &-l
+            +breakpoint(phone)
+                display: none
+        &-s
+            display: none
+            +breakpoint(phone)
+                display: block
+        +breakpoint(phone)
+            width: to-rem(86)
+            height: to-rem(86)
+    &__title
+        font-size: 1.25em
+        +breakpoint(phone)
+            font-size: 1em
+        
+.testimonials
+    padding-top: to-rem(90)
+    padding-bottom: to-rem(280)
+    position: relative
+    +breakpoint(phone)
+        padding-top: to-rem(57)
+        padding-bottom: to-rem(143)
+    &::before
+        content: ''
+        width: to-rem(30)
+        height: to-rem(40)
+        background-image: url('../images/spot.png')
+        background-position: center
+        background-size: cover
+        position: absolute
+        top: to-rem(50)
+        left: to-rem(950)
+
+.owl-dots
+    display: none
+
+.item
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.photo
+    width: to-rem(86)
+    height: to-rem(86)
+    border-radius: 50%
+    overflow: hidden
+    +breakpoint(phone)
+        width: to-rem(61)
+        height: to-rem(61)
+    img
+        opacity: 0
+        width: to-rem(84)
+
+.user__name
+    font-size: 1.375em
+    font-weight: 500
+    text-align: center
+    white-space: nowrap
+    margin-bottom: 0
+    opacity: 0
+    +breakpoint(phone)
+        font-size: 1em
+
+.comment
+    font-size: 1.125em
+    font-weight: 300
+    text-align: center
+    width: to-rem(650)
+    opacity: 50%
+    +breakpoint(phone)
+        font-size: 0.875em
+        width: 90%
+
+.center
+    .photo img, .comment, .user__name
+        opacity: 100%
+
+.owl-carousel
+    position: relative
+
+.comments
+    .owl-prev, .owl-next
+        position: absolute 
+        padding: to-rem(20)
+        top: to-rem(20)
+        transition: 0.2s
+        span
+            color: $brown
+            font-size: 1.25em
+            +breakpoint(phone)
+                font-size: 1em
+        &::before
+            content: ''
+            width: to-rem(43)
+            height: to-rem(43)
+            border-radius: 50%
+            border: 1px solid $brown
+            position: absolute
+            top: to-rem(-6)
+            left: to-rem(-20)
+            +breakpoint(phone)
+                width: to-rem(31)
+                height: to-rem(31)
+                top: to-rem(-4)
+                left: to-rem(-15)
+        &::after
+            content: ''
+            width: to-rem(47)
+            height: to-rem(1)
+            background-color: $brown
+            position: absolute
+            top: to-rem(16)
+            +breakpoint(phone)
+                width: to-rem(34)
+                top: to-rem(13)
+        &:hover
+            span
+                color: #ffffff
+            &::before
+                background-color: $brown
+    .owl-prev 
+        left: to-rem(440)
+        +breakpoint(phone)
+            left: to-rem(50)
+        &::after
+            left: to-rem(2)
+        &:hover
+            &::after
+                background: linear-gradient(90deg, #ffffff 50%, $brown 50%)
+
+    .owl-next
+        left: to-rem(1000)
+        +breakpoint(phone)
+            left: to-rem(310)
+        &::after
+            right: to-rem(2)
+        &:hover
+            &::after
+                background: linear-gradient(90deg, $brown 50%, #ffffff 50%)
+
+.blog
+    box-sizing: border-box
+    width: 100%
+    height: to-rem(700)
+    background-color: #000000
+    position: relative
+    +breakpoint(phone)
+        height: to-rem(367)
+    &__wrapper
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        position: absolute
+        top: -40%
+        left: to-rem(60)
+        +breakpoint(phone)
+            width: 100%
+            top: -40%
+            left: 0
+    &__block
+        +breakpoint(phone)
+            width: to-rem(277)
+        &--photo
+            +breakpoint(phone)
+                width: 100%
+    &__img--aloe
+        display: block
+        margin: to-rem(102) 0 
+        +breakpoint(phone)
+            margin: to-rem(59) 0 
+            top: -10%
+            left: 5%
+    &__title
+        font-size: 1.125em
+        +breakpoint(phone)
+            font-size: 0.875em
+    .product__heading
+        color: #ffffff
+        margin-bottom: to-rem(34) auto
+
+#aloeDark
+    float: right
+
+.img__brands
+    margin-top: to-rem(54)
+    +breakpoint(phone)
+        width: to-rem(734)
+        margin-top: 0
+
+.subscribe
+    display: flex
+    box-sizing: border-box
+    background: linear-gradient(90deg, rgba(252, 209, 194, 0.48) 0%, rgba(252, 209, 194, 0.2841) 58.72%, rgba(255, 255, 255, 0) 100%)
+    margin-top: to-rem(450)
+    +breakpoint(phone)
+        align-items: center
+        padding-top: to-rem(103)
+        flex-direction: column
+        margin-top: to-rem(150)
+    &__img
+        width: 30%
+        +breakpoint(phone)
+            width: 100%
+    &__photo
+        +breakpoint(phone)
+            display: block
+            width: 100%
+            margin-top: to-rem(30)
+    &__title
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        width: 61.8%
+        +breakpoint(phone)
+            width: 90%
+            padding-top: to-rem(43)
+        .product__description
+            font-size: 1.375em
+            width: 77%
+            margin-top: 0
+            margin-bottom: to-rem(30)
+            +breakpoint(phone)
+                font-size: 1em
+                width: 100%
+        .btn__shop
+            width: to-rem(203)
+            margin: 0
+            +breakpoint(phone)
+                width: 100%
+                margin-top: to-rem(10)
+        label
+            display: flex
+            align-items: center
+            +breakpoint(phone)
+                width: 100%
+                flex-direction: column
+                margin: 0
+    &__input
+        box-sizing: border-box
+        background-color: transparent
+        font-family: 'Poppins', sans-serif
+        font-size: 1em
+        width: to-rem(315)
+        border: 1px solid #000000
+        padding: to-rem(21) to-rem(22)
+        +breakpoint(phone)
+            font-size: 0.875em
+            width: 100%
+            padding: to-rem(16) to-rem(20)
+        &:focus
+            outline: none
+
+.form__sbm
+    +breakpoint(phone)
+        width: 100%
+
+.instagram__block
+    padding: to-rem(113) 0 to-rem(52) 0
+    +breakpoint(phone)
+        padding: to-rem(63) 0
+    .product__heading
+        text-transform: uppercase
+        margin-bottom: to-rem(64)
+        +breakpoint(phone)
+            margin-bottom: to-rem(20)
+
+.inst
+    width: 92%
+    margin: 0 auto
+    margin-bottom: to-rem(75)
+    +breakpoint(phone)
+        margin-bottom: to-rem(20)
+    .owl-prev, .owl-next
+        position: absolute 
+        padding: to-rem(20)
+        top: to-rem(100)
+        transition: 0.2s
+        span
+            color: $brown
+            font-size: 1.25em
+        &::before
+            display: none
+        &::after
+            content: ''
+            width: to-rem(24)
+            height: to-rem(1)
+            background-color: $brown
+            position: absolute
+        &:hover
+            &::after
+                background: $brown
+    .owl-prev 
+        left: to-rem(-45)
+        &::after
+            top: to-rem(15)
+            left: to-rem(2)
+
+    .owl-next
+        left: to-rem(1355)
+        &::after
+            top: to-rem(15)
+            right: to-rem(2)
+
+.join__us
+    text-align: center
+    font-weight: 300
+    margin: 0 auto
+    +breakpoint(phone)
+        width: 85%
+        font-size: 0.75em
+    svg
+        margin-right: to-rem(10)
+        +breakpoint(phone)
+            display: block
+            margin: 0 auto
+    span
+        text-transform: uppercase
+
+footer
+    background-color: #000
+    padding: to-rem(48) to-rem(62) 0 to-rem(62)
+    overflow: hidden
+    +breakpoint(phone)
+        padding: to-rem(20) to-rem(20) 0 to-rem(20)
+
+#logo-footer
+    +breakpoint(phone)
+        display: none
+
+#logo-footer-s
+    display: none
+    +breakpoint(phone)
+        display: block
+
+.main__info
+    display: flex
+    justify-content: space-between
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3)
+    +breakpoint(phone)
+        flex-direction: column
+
+.logo
+    width: 45%
+    position: relative
+    +breakpoint(phone)
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: space-between
+    .pages__list--horizon
+        display: none
+        +breakpoint(phone)
+            width: 30%
+            display: flex
+            margin-top: to-rem(5)
+
+#bio-dark
+    position: absolute
+    top: to-rem(-500)
+    left: to-rem(-550)
+    +breakpoint(phone)
+        display: none
+
+#bio-dark-s
+    display: none
+    +breakpoint(phone)
+        display: block
+        position: absolute
+        top: to-rem(-100)
+        left: to-rem(-70)
+        transform: rotate(135deg)
+
+.info
+    width: 55%
+    +breakpoint(phone)
+        width: 100%
+        margin-top: to-rem(25)
+
+.pages
+    display: flex
+    justify-content: space-between
+    +breakpoint(phone)
+        flex-direction: column
+    &__list
+        font-weight: 300
+        list-style-type: none
+        line-height: to-rem(38.4)
+        margin: 0
+        +breakpoint(phone)
+            font-size: 0.9375em
+            line-height: to-rem(36)
+            padding: 0
+        a
+            text-decoration: none
+            color: #ffffff
+            transition: 0.2s
+            svg
+                path
+                    fill: #ffffff
+            &:hover
+                color: $brown
+                svg
+                    path
+                        fill: $brown
+        &--horizon
+            display: flex
+            justify-content: space-between
+            width: 20%
+            +breakpoint(phone)
+                display: none
+
+.credit__cards
+    display: flex
+    justify-content: flex-end
+    padding: to-rem(41) 0 to-rem(31) 0
+    +breakpoint(phone)
+        width: 100%
+        justify-content: space-between
+        padding: to-rem(29) 0 to-rem(20) 0
+    img
+        cursor: pointer
+        margin: to-rem(8)
+        +breakpoint(phone)
+            margin: 0
+
+.add__info
+    display: flex
+    justify-content: space-between
+    p
+        color: rgba(255, 255, 255, 0.4)
+        font-size: 0.75em
+        font-weight: 300
+        margin: to-rem(20) 0
+        +breakpoint(phone)
+            margin: to-rem(16) 0
