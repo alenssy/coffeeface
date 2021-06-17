@@ -1,3 +1,3 @@
 ﻿# coffeeface
 
-https://alenssy.github.io/coffeeface/
+Site layout for laptop and phone extensions
